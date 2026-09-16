@@ -96,10 +96,11 @@ def make_animation(reference, dest):
 
 def email_table(config, base):
     e = html.escape
-    def img(name, width, height, alt=''):
+    def img(name, width, height, alt='', shadow=False):
+        effect = 'box-shadow:2px 3px 8px rgba(0,0,0,0.22);' if shadow else ''
         return (f'<img src="{e(base + name, quote=True)}" width="{width}" height="{height}" '
                 f'alt="{e(alt, quote=True)}" border="0" style="display:block;border:0;outline:none;'
-                f'text-decoration:none;width:{width}px;height:{height}px;max-width:none;">')
+                f'text-decoration:none;width:{width}px;height:{height}px;max-width:none;{effect}">')
     label = f"{config['first_name']} {config['last_name']} — {config['role']} — ANEKDOTE × DBM"
     td = 'padding:0;margin:0;font-size:0;line-height:0;vertical-align:top;'
     return f'''<!-- Signature 450 × 148 px. Seul le numéro est cliquable. -->
@@ -114,7 +115,7 @@ def email_table(config, base):
         </tr>
       </table>
     </td>
-    <td width="147" height="148" bgcolor="#ffffff" style="{td}width:147px;height:148px;">{img('impact-makers-3-lignes.gif',147,148,'WE ARE IMPACT MAKERS')}</td>
+    <td width="147" height="148" bgcolor="#ffffff" style="{td}width:147px;height:148px;">{img('impact-makers-3-lignes.gif',147,148,'WE ARE IMPACT MAKERS',shadow=True)}</td>
   </tr>
 </table>'''
 
